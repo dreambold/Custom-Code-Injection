@@ -6,8 +6,8 @@
 o	Follow this flow: https://wp-oauth.com/docs/general/grant-types/authorization-code/
 	Extension should store the access token and employ a “freshness” check to ensure the access token is still valid by attempting to get the user’s info via the instructions in the link above before attempting to send the module code to the module deployment server API.
 	Extension should store the access token in the local browser extension storage, and if present, send it, if it is not present or if the freshness check fails, display the login screen
-	Client oAuth ID: BSSvfHKotCFYMKyBqXn0lGaXPtjbwwX0ug60dQl1
-	Client oAuth Secret: Rl4Vk7FiLesT5Kgt8d6pXuX4g06UFRGJj2mU2G7m
+	Client oAuth ID: 
+	Client oAuth Secret: 
 	Access tokens last one hour before needing to obtain a new one
 o	This is the base WordPress application url: https://app.havocshield.com
 o	Test user: 
