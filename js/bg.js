@@ -36,7 +36,7 @@ chrome.extension.onMessage.addListener(function(msg, sender, reply) {
                                             if (result.result == "expired-access-token") {
                                                 localStorage.tokendata = ""
                                                 alert("Your Havoc Shield login session has expired. Please login again and then renter your guide code")
-                                                chrome.tabs.create({ url: "https://app.havocshield.com/oauth/authorize?client_id=BSSvfHKotCFYMKyBqXn0lGaXPtjbwwX0ug60dQl1&response_type=code&redirect_uri=https://app.havocshield.com/onboarding/?didit=1" }, function(tab) {
+                                                chrome.tabs.create({ url: "https://app.havocshield.com/oauth/authorize?client_id=&response_type=code&redirect_uri=https://app.havocshield.com/onboarding/?didit=1" }, function(tab) {
                                                    workTabs[tab.id] = "login";
                                                   });
 
@@ -66,14 +66,14 @@ chrome.extension.onMessage.addListener(function(msg, sender, reply) {
                             } else {
                                 localStorage.tokendata = ""
                                 alert("Your Havoc Shield login session has expired. Please login again and then renter your guide code")
-                            chrome.tabs.create({ url: "https://app.havocshield.com/oauth/authorize?client_id=BSSvfHKotCFYMKyBqXn0lGaXPtjbwwX0ug60dQl1&response_type=code&redirect_uri=https://app.havocshield.com/onboarding/?didit=1" }, function(tab) {
+                            chrome.tabs.create({ url: "https://app.havocshield.com/oauth/authorize?client_id=&response_type=code&redirect_uri=https://app.havocshield.com/onboarding/?didit=1" }, function(tab) {
                                 workTabs[tab.id] = "login";
                             });
                             }
                         },
                         error: function(result) {
                             alert("Your Havoc Shield login session has expired. Please login again and then renter your guide code")
-                            chrome.tabs.create({ url: "https://app.havocshield.com/oauth/authorize?client_id=BSSvfHKotCFYMKyBqXn0lGaXPtjbwwX0ug60dQl1&response_type=code&redirect_uri=https://app.havocshield.com/onboarding/?didit=1" }, function(tab) {
+                            chrome.tabs.create({ url: "https://app.havocshield.com/oauth/authorize?client_id=&response_type=code&redirect_uri=https://app.havocshield.com/onboarding/?didit=1" }, function(tab) {
                                 workTabs[tab.id] = "login";
                             });
                         }
@@ -83,7 +83,7 @@ chrome.extension.onMessage.addListener(function(msg, sender, reply) {
                 } else {
                     localStorage.tokendata = ""
                     alert("Your Havoc Shield login session has expired. Please login again and then renter your guide code")
-                    chrome.tabs.create({ url: "https://app.havocshield.com/oauth/authorize?client_id=BSSvfHKotCFYMKyBqXn0lGaXPtjbwwX0ug60dQl1&response_type=code&redirect_uri=https://app.havocshield.com/onboarding/?didit=1" }, function(tab) {
+                    chrome.tabs.create({ url: "https://app.havocshield.com/oauth/authorize?client_id=&response_type=code&redirect_uri=https://app.havocshield.com/onboarding/?didit=1" }, function(tab) {
                         workTabs[tab.id] = "login";
                     });
                 }
@@ -100,11 +100,11 @@ chrome.extension.onMessage.addListener(function(msg, sender, reply) {
                     type: 'POST',
                     url: "https://app.havocshield.com/oauth/token",
                     data: {
-                        "client_id": "BSSvfHKotCFYMKyBqXn0lGaXPtjbwwX0ug60dQl1",
-                        "client_secret": "Rl4Vk7FiLesT5Kgt8d6pXuX4g06UFRGJj2mU2G7m",
+                        "client_id": "",
+                        "client_secret": "",
                         "grant_type": "authorization_code",
                         "code": msg.data,
-                        "Authorization": "Basic QlNTdmZIS290Q0ZZTUt5QnFYbjBsR2FYUHRqYnd3WDB1ZzYwZFFsMTpSbDRWazdGaUxlc1Q1S2d0OGQ2cFh1WDRnMDZVRlJHSmoybVUyRzdt",
+                        "Authorization": "Basic ",
                         "Content-Type": "application/x-www-form-urlencoded",
                         "redirect_uri": "https://app.havocshield.com/onboarding/?didit=1"
                     },
@@ -133,7 +133,7 @@ chrome.extension.onMessage.addListener(function(msg, sender, reply) {
                                             if (result.result == "expired-access-token") {
                                                 localStorage.tokendata = ""
                                                 alert("Your Havoc Shield login session has expired. Please login again and then renter your guide code")
-                                                chrome.tabs.create({ url: "https://app.havocshield.com/oauth/authorize?client_id=BSSvfHKotCFYMKyBqXn0lGaXPtjbwwX0ug60dQl1&response_type=code&redirect_uri=https://app.havocshield.com/onboarding/?didit=1" }, function(tab) {
+                                                chrome.tabs.create({ url: "https://app.havocshield.com/oauth/authorize?client_id=&response_type=code&redirect_uri=https://app.havocshield.com/onboarding/?didit=1" }, function(tab) {
                                                    workTabs[tab.id] = "login";
                                                   });
 
