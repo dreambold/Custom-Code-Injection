@@ -1,0 +1,62 @@
+1. A URL to open in a new browser tab
+2. A URL of a JavaScript file to inject into the DOM of that tab after the page has loaded in order to provide a guided tour on top of the service
+
+•	Always display this logo on the top of every screen: 
+•	Before being allowed to submit a code and use the extension, the user must first login to the extension, and it would be authenticating against the WordPress REST API with relevant error messages and links
+o	Follow this flow: https://wp-oauth.com/docs/general/grant-types/authorization-code/
+	Extension should store the access token and employ a “freshness” check to ensure the access token is still valid by attempting to get the user’s info via the instructions in the link above before attempting to send the module code to the module deployment server API.
+	Extension should store the access token in the local browser extension storage, and if present, send it, if it is not present or if the freshness check fails, display the login screen
+	Client oAuth ID: BSSvfHKotCFYMKyBqXn0lGaXPtjbwwX0ug60dQl1
+	Client oAuth Secret: Rl4Vk7FiLesT5Kgt8d6pXuX4g06UFRGJj2mU2G7m
+	Access tokens last one hour before needing to obtain a new one
+o	This is the base WordPress application url: https://app.havocshield.com
+o	Test user: 
+o	Test password: 
+•	If the API responds that the code is invalid, an inline error message should appear in the chrome extension widow with an error message saying so and allowing a retry
+•	The javascript file injection must work on sites we do not control as it's a tour for other services
+•	You will be supplied with the deployment API URL, sample requests / responses, and test codes
+o	API URL: https://5ec215456197530016092a2d.mockapi.io/api/v1/guide/:id
+o	Request:
+	Method: GET
+	Header parameters:
+	‘x-api-key’ : [user’s access token stored in extension storage]
+o	Response:
+	Body:
+	'result' : ['invalid-code',’expired-access-token’, 'success']
+	'error' : [error string to surface to user, sent only on result = error]
+	'url' : [FQDN URL to open in new tab]
+	'js_src' : [FQDN URL of javascript remote file to inject into page]
+o	url and js_src are only sent as part of the response on result = success
+o	If result = invalid-code, display the error message to them and give them the chance to try another code in the form
+o	If result = expired-access-token, remove the saved access token, redirect back to the extension’s login page, and display the error message
+•	After successfully launching the tab and injecting the javascript, the extension should reset itself to accept another code, launch another tab, etc.
+
+Deployment API request test IDs and their response data
+
+[
+  {
+    "id": "google-mfa",
+    "createdAt": null,
+    "url": "https://google.com",
+    "js_src": "https://app.havocshield.com/module-deploy-google.js",
+    "result": "success"
+  },
+  {
+    "id": "twitter-mfa",
+    "createdAt": null,
+    "url": "https://twitter.com/bfritton",
+    "js_src": "https://app.havocshield.com/module-deploy-twitter.js",
+    "result": "success"
+  },
+  {
+    "id": "invalid-code-check",
+    "result": "invalid-code",
+    "error": "We could not find the module guide code you entered. Please try again"
+  },
+  {
+    "id": "expired-token-check",
+    "result": "expired-access-token",
+    "error": "Your Havoc Shield login session has expired. Please login again and then renter your guide code."
+  }
+]
+
